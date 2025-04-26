@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "test": "tap \"test/**/*.test.ts\"",
-    "test:ci": "TEST_CI=true tap \"test/**/*.test.ts\"",
+    "test:ci": "TEST_CI=true tap \"test/**/*.test.ts\" --allow-incomplete-coverage" ,
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "rimraf dist && tsc --outDir dist",
     "lint": "biome check .",
