@@ -1,0 +1,60 @@
+{
+  "name": "bring-mcp-server",
+  "version": "1.0.0",
+  "description": "A server implementation of the Model Context Protocol for Bring API",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "test": "tap \"test/**/*.test.ts\"",
+    "test:ci": "TEST_CI=true tap \"test/**/*.test.ts\"",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "rimraf dist && tsc --outDir dist",
+    "lint": "biome check .",
+    "format": "biome format --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavideArena/bring-mcp-server.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "server",
+    "bring",
+    "list",
+    "bring-mcp-server"
+  ],
+  "author": {
+    "name": "Davide Arena",
+    "url": "https://github.com/DavideArena"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DavideArena/bring-mcp-server/issues"
+  },
+  "homepage": "https://github.com/DavideArena/bring-mcp-server#readme",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.14.1",
+    "@types/sinon": "^17.0.4",
+    "rimraf": "^6.0.1",
+    "sinon": "^20.0.0",
+    "tap": "^21.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "@sinclair/typebox": "^0.34.33",
+    "dotenv": "^16.5.0",
+    "env-schema": "^6.0.1",
+    "ts-node-dev": "^2.0.0",
+    "undici": "^7.8.0"
+  }
+}

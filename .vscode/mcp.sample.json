@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "bring-mcp-server": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["bring-mcp-server/dist/index.js"],
+      "env": {
+        "BRING_EMAIL": "bringEmail",
+        "BRING_PASSWORD": "bringPassword",
+        "BRING_API_KEY": "bringApiKey"
+      }
+    }
+  }
+}

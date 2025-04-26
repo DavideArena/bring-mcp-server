@@ -1,0 +1,10 @@
+{
+  "extends": ["biome:recommended"],
+  "linter": {
+    "rules": {
+      "style": {
+        "quotes": "double"
+      }
+    }
+  }
+}
