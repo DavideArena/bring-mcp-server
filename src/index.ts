@@ -61,13 +61,13 @@ server.server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case addRecipeItemsToBringListTool.name:
         return await handleAddRecipeItemsToBringList(
           bringClient,
-          request.params.parameters
+          request.params.arguments
         );
 
       case getBringListItemsTool.name:
         return await handleGetBringListItems(
           bringClient,
-          request.params.parameters
+          request.params.arguments
         );
 
       case getBringListsTool.name:
@@ -76,19 +76,19 @@ server.server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case removeItemOrAllFromBringListTool.name:
         return await handleRemoveItemOrAllFromBringList(
           bringClient,
-          request.params.parameters
+          request.params.arguments
         );
 
       case getBringListItemsDetailsTool.name:
         return await handleGetBringListItemsDetails(
           bringClient,
-          request.params.parameters
+          request.params.arguments
         );
 
       case getAllUsersFromBringListTool.name:
         return await handleGetAllUsersFromBringList(
           bringClient,
-          request.params.parameters
+          request.params.arguments
         );
 
       default:
@@ -111,7 +111,6 @@ server.server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.log('Bring MCP Server running on stdio');
 }
 
 main().catch((error) => {
