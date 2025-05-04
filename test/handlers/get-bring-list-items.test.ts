@@ -15,7 +15,6 @@ tap.test('handleGetBringListItems', async (t) => {
   });
 
   t.test('should return list items when list exists', async (t) => {
-    bringMock.getLists.resolves(mockListsResponse);
     bringMock.getItems.resolves(mockItemsResponse);
 
     const response = await handleGetBringListItems(bringMock, {
@@ -26,11 +25,10 @@ tap.test('handleGetBringListItems', async (t) => {
       content: [
         {
           type: 'text',
-          text: `Items in list 'Groceries':\n- Apples\n- Milk\n- Bread`,
+          text: `Items in list:\n- Apples\n- Milk\n- Bread`,
         },
       ],
     });
-    t.equal(bringMock.getLists.callCount, 1);
     t.equal(bringMock.getItems.callCount, 1);
     t.same(bringMock.getItems.firstCall.args, [validListId]);
   });
@@ -54,43 +52,12 @@ tap.test('handleGetBringListItems', async (t) => {
         content: [
           {
             type: 'text',
-            text: `Items in list 'Groceries':\n- (empty)`,
+            text: `Items in list:\n- (empty)`,
           },
         ],
       });
     }
   );
-
-  t.test('should return error when list not found', async (t) => {
-    bringMock.getLists.resolves(mockListsResponse);
-
-    const response = await handleGetBringListItems(bringMock, {
-      listId: invalidListId,
-    });
-
-    t.match(response, {
-      content: [
-        {
-          type: 'text',
-          text: `List '${invalidListId}' not found for user.`,
-        },
-      ],
-    });
-    t.equal(bringMock.getItems.callCount, 0);
-  });
-
-  t.test('should handle error when getting lists', async (t) => {
-    const errorMessage = 'Failed to get lists';
-    bringMock.getLists.rejects(new Error(errorMessage));
-
-    const response = await handleGetBringListItems(bringMock, {
-      listId: validListId,
-    });
-
-    t.match(response, {
-      content: [{ type: 'text', text: `Error: ${errorMessage}` }],
-    });
-  });
 
   t.test('should handle error when getting items', async (t) => {
     const errorMessage = 'Failed to get items';

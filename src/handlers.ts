@@ -86,29 +86,13 @@ export const handleGetBringListItems = async (
   >(getBringListItemsTool, parameters);
 
   try {
-    const listsResult = await bringClient.getLists();
-
-    for (const list of listsResult.lists) {
-      if (list.listUuid === listId) {
-        const items = await bringClient.getItems(listId);
-        const purchaseItems = items.purchase.map((i) => i.name);
-        return {
-          content: [
-            {
-              type: 'text',
-              text: `Items in list '${list.name}':\n- ${
-                purchaseItems.join('\n- ') || '(empty)'
-              }`,
-            },
-          ],
-        };
-      }
-    }
+    const items = await bringClient.getItems(listId);
+    const purchaseItems = items.purchase.map((i) => i.name);
     return {
       content: [
         {
           type: 'text',
-          text: `List '${listId}' not found for user.`,
+          text: `Items in list:\n- ${purchaseItems.join('\n- ') || '(empty)'}`,
         },
       ],
     };
